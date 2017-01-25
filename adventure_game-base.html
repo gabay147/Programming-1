@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+<style>
+
+#header {
+	position:relative;
+	height:50px;
+	
+	visibility:hidden;
+}
+
+body {
+	background-color:grey;
+}
+
+body > div {
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#game_output {
+	width:900px;
+	height:500px;
+	
+	background-color:lightgrey;
+	box-shadow:0px 5px 5px 0px rgba(0,0,0,0.25);
+	outline:1px solid black;
+	
+	overflow:auto;
+}
+
+#game_output > * {
+	position:relative;
+	width:800px;
+	top:30px;
+	
+	margin-left:auto;
+	margin-right:auto;
+	
+	padding:20px;
+	
+	background-color:gray;
+}
+
+#buttons {
+	width:900px;
+}
+
+#buttons div {
+	float:left;
+	
+	width: 400px;
+	height:100px;		
+		
+	margin:25px;
+	
+	text-align:center;
+	line-height:100px;
+	
+	background-color:lightgray;
+	box-shadow:0px 5px 5px 0px rgba(0,0,0,0.25);
+	outline:1px solid black;
+	
+	cursor:pointer;
+}
+
+#button_1 {
+}
+
+#button_2 {
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<div id="game_output">
+    <div id="text_box_1"></div>
+    <div id="text_box_2"></div>
+    <div id="text_box_3"></div>
+    <div id="text_box_4"></div>
+</div>
+
+<div id="buttons">
+
+<div id="button_1"></div>
+<div id="button_2"></div>
+<div id="button_3"></div>
+<div id="button_4"></div>
+
+</div>
+    
+    
+<script>
+
+/*
+You are going to make a short choose your own adventure game.
+
+1. Your game must have at least 8 different locations (denoted by separate "if checks" within the function).
+
+2. It must have a clearly defined goal within the first two locations (for instance; finding your lost cat, defeating the evil wizard, or returning your netflix dvds).
+
+3. There must be at least 4 different variables that need to be changed before the goal is reached (for instance getting your cat cage to put the cat in).  Spread them around to different locations so that all of the variables are not changed in one location (one scene).
+
+4. The variables must be of different types.  Don't just use all booleans.  Use booleans, strings, and numbers.
+
+5. The final 8th "location" will simply be a message stating that the player has completed his or her mission.
+
+6. Remember that you'll only need to change the sections named "Game Specific Variables" and "Conditional checks".
+*/
+
+////////////////////////////////////////
+// ENGINE LISTENERS
+
+document.getElementById('button_1').onmousedown = function(){update(1)};
+document.getElementById('button_2').onmousedown = function(){update(2)};
+document.getElementById('button_3').onmousedown = function(){update(3)};
+document.getElementById('button_4').onmousedown = function(){update(4)};
+
+////////////////////////////////////////
+// ENGINE VARIABLES
+
+// We can't use "location" because that is the JavaScript shortcut
+// for the current relative address.  We'll use "scene" instead.
+var scene = "home";
+
+var txt1 = "";
+var txt2 = "";
+var txt3 = "";
+var txt4 = "";
+
+var btn1 = "";
+var btn2 = "";
+var btn3 = "";
+var btn4 = "";
+
+////////////////////////////////////////
+// GAME SPECIFIC VARIABLES
+
+var have_rotten_apple = false;
+
+////////////////////////////////////////
+// FUNCTION
+
+update( 0 );
+
+function update( choice ){	
+
+// Reset some values to nothing so that you don't show up
+// if they are not manually changed.
+
+document.getElementById('text_box_1').style.display = 'block';
+document.getElementById('text_box_2').style.display = 'block';
+document.getElementById('text_box_3').style.display = 'block';
+document.getElementById('text_box_4').style.display = 'block';
+
+document.getElementById('button_1').style.display = 'block';
+document.getElementById('button_2').style.display = 'block';
+document.getElementById('button_3').style.display = 'block';
+document.getElementById('button_4').style.display = 'block';
+
+txt1 = "";
+txt2 = "";
+txt3 = "";
+txt4 = "";
+
+btn1 = "";
+btn2 = "";
+btn3 = "";
+btn4 = "";
+	
+////////////////////////////////////////
+// Conditional checks
+
+// Check for location first and begin traversing the possibilities.	
+    
+if ( scene = "template" ) {
+
+	// Write text to the main output window.
+	// Text without "if statements" will always be the same.
+	
+	// Default text
+
+	txt1 = "aaaa";
+	txt2 = "bbbb";
+	txt3 = "cccc";
+	txt4 = "dddd";
+
+	// Variable modified text	
+	// If something about the description can change, it need to have a variable to check.
+	
+	if( have_rotten_apple ){
+		txt2 = "test test";
+	}	
+
+	// Write your button option captions.
+
+	btn1 = "Think about life.";
+	btn2 = "Take the rotten apple..";
+	btn3 = "Go to the store.";
+
+	// Variable modified button captions
+	
+	if( have_rotten_apple == true){
+		btn2 = "";
+	}	
+
+	// Which options change what variables.
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+	
+} // End of template.  Should lead into another "if"
+/////////////////////////////////
+//         FIRST SCENE         //
+/////////////////////////////////
+if ( scene = "first_scene" ) {
+    
+    txt1 = "You're walking in the woods. It's getting dark and your phone is dead.";
+    txt2 = "Out of the corner of your eye, you spot him... Shia LeBeouf.";
+    txt3 = "He's following you, about 30 feet back. He gets down on all fours and breaks into a sprint. You can see there's blood on his face. By God! There's blood everywhere!";
+    txt4 = "What do you do?!";
+    
+    btn1 = "Run for your life from Shia LeBeouf!";
+    btn2 = "He's brandishing a knife, it's Shia LeBeouf! (fight him!)";
+    btn3 = "Lurking in the shadows... (Try to hide!)";
+    btn4 = "Holywood Superstar Shia LeBeouf! (Ask for an autograph)";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+	
+}
+/////////////////////////////////
+//         SECOND SCENE        //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+
+}
+/////////////////////////////////
+//         THIRD SCENE         //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//         FOURTH SCENE        //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//         FIFTH SCENE         //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//         SIXTH SCENE         //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//        SEVENTH SCENE        //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//         EIGHTH SCENE        //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+/////////////////////////////////
+//         NINTH SCENE         //
+/////////////////////////////////
+else if ( scene = "second_scene") {
+    
+    txt1 = "This is a test.";
+    txt2 = "how do I get here?";
+    txt3 = "another test";
+    txt4 = "how do I change scenes???";
+    
+    btn1 = "hold 1";
+    btn2 = "hold 2";
+    btn3 = "hold 3";
+    btn4 = "hold 4";
+
+	if( choice == 1 ){
+		console.log( "User has picked choice 1" );
+	}
+	if( choice == 2 ){
+		console.log( "User has picked choice 2" );
+	}
+	if( choice == 3 ){
+		console.log( "User has picked choice 3" );
+	}
+	if( choice == 4 ){
+		console.log( "User has picked choice 4" );
+	}
+}
+
+else {
+	// Nothing
+}
+
+
+
+
+////////////////////////////////////////
+// Update everything
+
+document.getElementById('text_box_1').innerHTML = txt1;
+document.getElementById('text_box_2').innerHTML = txt2;
+document.getElementById('text_box_3').innerHTML = txt3;
+document.getElementById('text_box_4').innerHTML = txt4;
+
+document.getElementById('button_1').innerHTML = btn1;
+document.getElementById('button_2').innerHTML = btn2;
+document.getElementById('button_3').innerHTML = btn3;
+document.getElementById('button_4').innerHTML = btn4;
+
+if( txt1 == "" ){
+	document.getElementById('text_box_1').style.display = 'none';
+}
+if( txt2 == "" ){
+	document.getElementById('text_box_2').style.display = 'none';
+}
+if( txt3 == "" ){
+	document.getElementById('text_box_3').style.display = 'none';
+}
+if( txt4 == "" ){
+	document.getElementById('text_box_4').style.display = 'none';
+}
+
+if( btn1 == "" ){
+	document.getElementById('button_1').style.display = 'none';
+}
+if( btn2 == "" ){
+	document.getElementById('button_2').style.display = 'none';
+}
+if( btn3 == "" ){
+	document.getElementById('button_3').style.display = 'none';
+}
+if( btn4 == "" ){
+	document.getElementById('button_4').style.display = 'none';
+}
+
+if ( choice != 0 ) {
+	choice = 0;
+	update( 0 );
+}
+
+
+} // Update function
+
+</script>
+
+
+</body>
+
+
+</html>
