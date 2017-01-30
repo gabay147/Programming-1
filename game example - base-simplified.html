@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<style>
+
+#header {
+	position:relative;
+	height:50px;
+	
+	/*visibility:hidden;*/
+}
+
+body {
+	background-color:grey;
+}
+
+body > div {
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#game_output {
+	width:900px;
+	height:300px;
+	
+	background-color:lightgrey;
+	box-shadow:0px 5px 5px 0px rgba(0,0,0,0.25);
+	outline:1px solid black;
+	
+	overflow:auto;
+}
+
+#game_output > * {
+	position:relative;
+	width:800px;
+	top:30px;
+	
+	margin-left:auto;
+	margin-right:auto;
+	
+	padding:20px;
+	
+	background-color:grey;
+}
+
+#buttons {
+	width:900px;
+}
+
+#buttons div {
+	float:left;
+	
+	width: 400px;
+	height:100px;		
+		
+	margin:25px;
+	
+	text-align:center;
+	line-height:100px;
+	
+	background-color:lightgrey;
+	box-shadow:0px 5px 5px 0px rgba(0,0,0,0.25);
+	outline:1px solid black;
+	
+	cursor:pointer;
+}
+
+#button_1 {
+}
+
+#button_2 {
+}
+
+</style>
+</head>
+<body>
+    
+
+<div id="header"></div>
+
+<div id="game_output">
+    <div id="text_box_1">aaaaxxxxx</div>
+    <div id="text_box_2">bbbb</div>
+    <div id="text_box_3">cccc</div>
+    <div id="text_box_4">dddd</div>
+</div>
+
+<div id="buttons">
+
+    <div id="button_1">Option 1</div>
+    <div id="button_2">Option 2</div>
+    <div id="button_3">Option 3</div>
+    <div id="button_4">Option 4</div>
+
+</div>
+
+</body>
+
+<script>
+
+    ////////////////////////////
+    //    BUTTON VARIABLES    //
+    ////////////////////////////
+    var button1_text = "";
+    var button2_text = "";
+    var button3_text = "";
+    var button4_text = "";
+    
+    ////////////////////////////
+    //     TEXT VARIABLES     //
+    ////////////////////////////
+    var text1_text = "";
+    var text2_text = "";
+    var text3_text = "";
+    var text4_text = "";
+    
+    document.getElementById('button_1').onmousedown = function(){update(1)};
+    document.getElementById('button_2').onmousedown = function(){update(2)};
+    document.getElementById('button_3').onmousedown = function(){update(3)};
+    document.getElementById('button_4').onmousedown = function(){update(4)};
+    
+    document.getElementById('text_box_1').innerHTML = "This is a simple text.";
+    
+    
+    if ( choice == 1) {
+        document.getElementById('text_box_1').innerHTML = "success!";
+        document.getElementById('text_box_2').innerHTML = "";
+        document.getElementById('text_box_3').innerHTML = "";
+    }
+
+
+    //update( 0 );
+
+    function update( choice ){	
+
+    if ( choice == 1) {
+        
+        document.getElementById('button_1').innerHTML = "North";
+        document.getElementById('button_2').innerHTML = "East";
+        document.getElementById('button_3').innerHTML = "West";
+        document.getElementById('button_4').innerHTML = "South";
+    }
+    else if ( choice == 2) {
+        
+    }
+    else if ( choice == 3) {
+        
+    }
+    else {
+        
+    }
+
+    } // Update function
+    
+    
+
+</script>
+
+</html>
